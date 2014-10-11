@@ -1,0 +1,1 @@
+When installing a gem via `gem install` rather than `bundle install` from Gemfile, the arguments `--no-ri --no-rdoc` will keep it from wasting time installing local documentation, which you will probably google for anyway.
