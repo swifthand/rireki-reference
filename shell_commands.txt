@@ -1,0 +1,8 @@
+# Create the initial model migrations.
+rails g scaffold experience date:string title:string description:text company:string
+rails g scaffold education date:string award:string description:text school:string location:string
+rails g scaffold activity date:string title:string description:text
+rails g scaffold qualification description:string
+
+# Run the database migration that creates the table which backs the model.
+rake db:migrate
