@@ -1,4 +1,5 @@
 Rireki::Application.routes.draw do
+
   resources :qualifications
 
   resources :activities
@@ -6,6 +7,11 @@ Rireki::Application.routes.draw do
   resources :educations
 
   resources :experiences
+
+  get  "dashboard",
+        to: "static#dashboard"
+
+  root "static#landing"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
