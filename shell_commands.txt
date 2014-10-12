@@ -1,3 +1,6 @@
+
+# PHASE ONE
+
 # Create the initial model migrations.
 rails g scaffold experience date:string title:string description:text company:string
 rails g scaffold education date:string award:string description:text school:string location:string
@@ -6,3 +9,9 @@ rails g scaffold qualification description:string
 
 # Run the database migration that creates the table which backs the model.
 rake db:migrate
+
+
+# PHASE TWO
+bundle install # To update gems after devise has been added to Gemfile.
+rails g devise:install
+rails g devise user
