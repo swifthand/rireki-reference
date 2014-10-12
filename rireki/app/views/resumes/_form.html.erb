@@ -1,0 +1,63 @@
+<%= form_for(@resume) do |f| %>
+  <% if @resume.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
+
+      <ul>
+      <% @resume.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :objective %><br>
+    <%= f.text_area :objective %>
+  </div>
+
+  <!-- Where the action happens -->
+  <%= render  layout:  "form_association_checkboxes",
+              locals:   { f: f, resume: @resume,
+                collection: @experiences,
+                association_name: 'experiences' } do |exp| %>
+    <%= exp.title %>
+  <% end -%>
+
+  <%= render  layout:  "form_association_checkboxes",
+              locals:   { f: f, resume: @resume,
+                collection: @educations,
+                association_name: 'educations' } do |edu| %>
+    <%= edu.award %>
+  <% end -%>
+
+  <%= f.label :activities %>
+  <% @activities.each do |act| %>
+    <div>
+      <%= label_tag "activity_#{act.id}" do %>
+        <%= check_box_tag :activity_ids, act.id, @resume.activities.include?(act),
+            name: "resume[activity_ids][]", id: "activity_#{act.id}" %>
+        <%= act.title %>
+      <% end -%>
+    </div>
+  <% end %>
+
+  <%= render  layout:  "form_association_checkboxes",
+              locals:   { f: f, resume: @resume,
+                collection: @qualifications,
+                association_name: 'qualifications' } do |edu| %>
+    <%= edu.description %>
+  <% end -%>
+
+
+  <!-- End "the action" -->
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

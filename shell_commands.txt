@@ -18,3 +18,11 @@ rails g devise user
 
 rails g migration AddUserIdToAllModels
 rake db:migrate
+
+
+# PHASE THREE
+rails g scaffold resume name:string objective:text
+rails g migration CreateResumeEducations resume_id:integer education_id:integer
+rails g migration CreateResumeExperiences resume_id:integer experience_id:integer
+rails g migration CreateResumeQualifications resume_id:integer qualification_id:integer
+rails g migration CreateResumeActivities resume_id:integer activity_id:integer

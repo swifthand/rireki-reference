@@ -1,24 +1,29 @@
-<h1><%= @user.name %></h1>
+<h1><%= @resume.user.name %></h1>
 
-<% @experiences.each do |exp| %>
+<% if @resume.objective.present? %>
+  <h3>Objective</h3>
+  <%= @resume.objective %>
+<% end -%>
+
+<% @resume.experiences.each do |exp| %>
   <div>
     <%= exp.title %> | <%= exp.company %> | <%= exp.date %>
   </div>
 <% end -%>
 
-<% @educations.each do |edu| %>
+<% @resume.educations.each do |edu| %>
   <div>
     <%= edu.award %> | <%= edu.school %> | <%= edu.date %>
   </div>
 <% end -%>
 
-<% @activities.each do |act| %>
+<% @resume.activities.each do |act| %>
   <div>
     <%= act.title %>
   </div>
 <% end -%>
 
-<% @qualifications.each do |qual| %>
+<% @resume.qualifications.each do |qual| %>
   <div>
     <%= qual.description %>
   </div>

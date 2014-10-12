@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012000359) do
+ActiveRecord::Schema.define(version: 20141012221744) do
 
   create_table "activities", force: true do |t|
     t.string   "date"
@@ -48,6 +48,42 @@ ActiveRecord::Schema.define(version: 20141012000359) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "resume_activities", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "activity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_educations", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "education_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_experiences", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "experience_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_qualifications", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "qualification_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resumes", force: true do |t|
+    t.string   "name"
+    t.text     "objective"
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

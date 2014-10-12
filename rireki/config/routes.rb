@@ -1,5 +1,7 @@
 Rireki::Application.routes.draw do
 
+  resources :resumes
+
   devise_for :users
 
   devise_scope :user do
@@ -13,10 +15,6 @@ Rireki::Application.routes.draw do
     get "log_out",  to: "devise/sessions#destroy"
     get "logout",   to: "devise/sessions#destroy"
   end
-
-  get   "resumes/:user_id",
-        to: "resumes#show",
-        as: "resume"
 
   resources :qualifications
 

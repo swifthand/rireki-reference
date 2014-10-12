@@ -1,0 +1,28 @@
+<%# Get a helpful string for naming fields.  %>
+<% singular_name = association_name.singularize %>
+
+<%= f.label association_name %>
+
+<% collection.each do |entry| %>
+  <%
+    # The id used for labels & the checkbox itself.
+    field_id    = "#{singular_name}_#{entry.id}"
+    # Field name for Rails to interpret this as an array-style parameter
+    field_name  = "resume[#{singular_name}_ids][]"
+  %>
+  <div>
+    <%= label_tag field_id do %>
+      <%# Hidden tag with empty value, which is shadowed when box is checked. %>
+      <%= hidden_field_tag "#{field_id}_removed", "", name: field_name %>
+
+      <%# Checkbox whose value is the entry's id %>
+      <%= check_box_tag "#{singular_name}_ids", entry.id,
+            @resume.send(association_name).include?(entry),
+            name: field_name, id: field_id %>
+
+      <%# Allow the calling view to provide the text next to the box. %>
+      <%= yield entry %>
+
+    <% end -%>
+  </div>
+<% end %>
