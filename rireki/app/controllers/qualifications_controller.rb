@@ -4,7 +4,7 @@ class QualificationsController < ApplicationController
   # GET /qualifications
   # GET /qualifications.json
   def index
-    @qualifications = Qualification.all
+    @qualifications = current_user.qualifications.all
   end
 
   # GET /qualifications/1
@@ -24,7 +24,7 @@ class QualificationsController < ApplicationController
   # POST /qualifications
   # POST /qualifications.json
   def create
-    @qualification = Qualification.new(qualification_params)
+    @qualification = current_user.qualifications.build(qualification_params)
 
     respond_to do |format|
       if @qualification.save
@@ -65,6 +65,7 @@ class QualificationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_qualification
       @qualification = Qualification.find(params[:id])
+      ownership_check!(@qualification)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

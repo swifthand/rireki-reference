@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity.all
+    @activities = current_user.activities.all
   end
 
   # GET /activities/1
@@ -24,7 +24,7 @@ class ActivitiesController < ApplicationController
   # POST /activities
   # POST /activities.json
   def create
-    @activity = Activity.new(activity_params)
+    @activity = current_user.activities.build(activity_params)
 
     respond_to do |format|
       if @activity.save
@@ -65,6 +65,7 @@ class ActivitiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_activity
       @activity = Activity.find(params[:id])
+      ownership_check!(@activity)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

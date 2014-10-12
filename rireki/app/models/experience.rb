@@ -1,5 +1,6 @@
 class Experience < ActiveRecord::Base
 
-  validates_presence_of :date, :title, :description, :company
+  belongs_to :user
+  validates_presence_of :date, :title, :description, :company, :user
 
 end

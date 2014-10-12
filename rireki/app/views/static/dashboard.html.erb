@@ -1,6 +1,9 @@
-Hello I'm a dashboard.
+Find your resume here: <%= link_to resume_url(user_id: current_user.id), resume_path(user_id: current_user.id) %>
 
-<p><%= link_to "Experiences", experiences_path %></p>
-<p><%= link_to "Education", experiences_path %></p>
-<p><%= link_to "Activities and Projects", experiences_path %></p>
-<p><%= link_to "Qualifications", experiences_path %></p>
+<%= render partial: 'experiences/list' %>
+
+<%= render partial: 'educations/list' %>
+
+<%= render partial: 'activities/list', locals: { activities: @activities } %>
+
+<%= render partial: 'qualifications/list' %>

@@ -1,5 +1,6 @@
 class Qualification < ActiveRecord::Base
 
-  validates_presence_of :description
+  belongs_to :user
+  validates_presence_of :description, :user
 
 end

@@ -1,5 +1,6 @@
 class Education < ActiveRecord::Base
 
-  validates_presence_of :date, :award, :description, :school, :location
+  belongs_to :user
+  validates_presence_of :date, :award, :description, :school, :location, :user
 
 end

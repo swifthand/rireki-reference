@@ -15,3 +15,6 @@ rake db:migrate
 bundle install # To update gems after devise has been added to Gemfile.
 rails g devise:install
 rails g devise user
+
+rails g migration AddUserIdToAllModels
+rake db:migrate

@@ -14,6 +14,10 @@ Rireki::Application.routes.draw do
     get "logout",   to: "devise/sessions#destroy"
   end
 
+  get   "resumes/:user_id",
+        to: "resumes#show",
+        as: "resume"
+
   resources :qualifications
 
   resources :activities
@@ -22,8 +26,9 @@ Rireki::Application.routes.draw do
 
   resources :experiences
 
-  get  "dashboard",
-        to: "static#dashboard"
+  get   "dashboard",
+        to: "static#dashboard",
+        as: "dashboard"
 
   root "static#landing"
 

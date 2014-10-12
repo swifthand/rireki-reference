@@ -4,7 +4,7 @@ class ExperiencesController < ApplicationController
   # GET /experiences
   # GET /experiences.json
   def index
-    @experiences = Experience.all
+    @experiences = current_user.experiences.all
   end
 
   # GET /experiences/1
@@ -24,7 +24,7 @@ class ExperiencesController < ApplicationController
   # POST /experiences
   # POST /experiences.json
   def create
-    @experience = Experience.new(experience_params)
+    @experience = current_user.experiences.build(experience_params)
 
     respond_to do |format|
       if @experience.save
@@ -65,6 +65,7 @@ class ExperiencesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_experience
       @experience = Experience.find(params[:id])
+      ownership_check!(@experience)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

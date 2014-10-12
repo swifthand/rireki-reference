@@ -1,5 +1,6 @@
 class Activity < ActiveRecord::Base
 
-  validates_presence_of :date, :title, :description
+  belongs_to :user
+  validates_presence_of :date, :title, :description, :user
 
 end

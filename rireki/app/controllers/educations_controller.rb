@@ -4,7 +4,9 @@ class EducationsController < ApplicationController
   # GET /educations
   # GET /educations.json
   def index
-    @educations = Education.all
+    # @educations = Education.where(user: current_user).all
+    # @educations = Education.where(user_id: current_user.id).all
+    @educations = current_user.educations.to_a
   end
 
   # GET /educations/1
@@ -24,7 +26,7 @@ class EducationsController < ApplicationController
   # POST /educations
   # POST /educations.json
   def create
-    @education = Education.new(education_params)
+    @education = current_user.educations.build(education_params)
 
     respond_to do |format|
       if @education.save
@@ -65,6 +67,7 @@ class EducationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_education
       @education = Education.find(params[:id])
+      ownership_check!(@education)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
